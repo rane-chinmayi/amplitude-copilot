@@ -1,5 +1,6 @@
 import json
 import os
+import time
 import numpy as np
 import faiss
 from google import genai
@@ -43,14 +44,29 @@ embeddings = []
 for i, chunk in enumerate(chunks):
     try:
         text = chunk["text"]
-        response = client.models.embed_content(
-            model=model_name,
-            contents=text
-        )
-        embeddings.append(response.embeddings[0].values)
+
+        # Try to embed with retry on rate limit (429 error)
+        max_retries = 1
+        for attempt in range(max_retries + 1):
+            try:
+                response = client.models.embed_content(
+                    model=model_name,
+                    contents=text
+                )
+                embeddings.append(response.embeddings[0].values)
+                break
+            except Exception as e:
+                if "429" in str(e) and attempt < max_retries:
+                    print(f"  Rate limited on chunk {i + 1}. Waiting 60 seconds before retry...")
+                    time.sleep(60)
+                else:
+                    raise
 
         if (i + 1) % 5 == 0:
             print(f"  Progress: {i + 1}/{len(chunks)} chunks embedded")
+
+        # Pause between calls to avoid rate limiting
+        time.sleep(2)
 
     except Exception as e:
         print(f"Error embedding chunk {i}: {e}")

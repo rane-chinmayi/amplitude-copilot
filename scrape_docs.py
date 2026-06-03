@@ -11,6 +11,15 @@ urls = [
     "https://amplitude.com/docs/analytics/behavioral-cohorts",
     "https://amplitude.com/docs/analytics/charts/data-tables",
     "https://amplitude.com/docs/analytics/user-data-lookup",
+    "https://amplitude.com/docs/analytics/charts/build-charts-add-user-segments",
+    "https://amplitude.com/docs/analytics/charts/compass",
+    "https://amplitude.com/docs/analytics/charts/journeys/journeys-understand-paths",
+    "https://amplitude.com/docs/analytics/charts/lifecycle",
+    "https://amplitude.com/docs/analytics/charts/stickiness",
+    "https://amplitude.com/docs/analytics/account-level-reporting",
+    "https://amplitude.com/docs/analytics/charts/revenue-ltv",
+    "https://amplitude.com/docs/analytics/charts/event-segmentation/event-segmentation-build",
+    "https://amplitude.com/docs/analytics/charts/journeys/journeys-understand-visualizations",
 ]
 
 docs_folder = "docs"
