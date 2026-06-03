@@ -1,0 +1,10 @@
+google-generativeai
+google-genai
+faiss-cpu
+streamlit
+gspread
+oauth2client
+requests
+beautifulsoup4
+numpy
+python-dotenv
