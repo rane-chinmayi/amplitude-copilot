@@ -1,5 +1,6 @@
 creds.json
 .env
+.streamlit/secrets.toml
 __pycache__/
 *.pyc
 *.pyo
