@@ -1,0 +1,145 @@
+Set up Analytics for a website and/or app - Analytics Help
+Skip to main content
+Analytics HelpSign inGoogle HelpHelp CenterGet started with AnalyticsCollect and manage dataReport and exploreAdvertising and attributionAudiences and remarketingManage accounts, properties, and usersGoogle Analytics 360Policies and data privacyCommunityAnalyticsPrivacy PolicyTerms of ServiceSubmit feedback Send feedback on...This help content & informationGeneral Help Center experienceNextHelp CenterCommunityAnnouncementsAnalytics
+Contact us
+Get started with AnalyticsIntroduction to AnalyticsSet up AnalyticsGuides and videosTroubleshootGlossaryCollect and manage dataEvents and key eventsImport data from external systemsIntegrationsMeasure ecommerceMeasure lead generationFirst-party dataTroubleshoot data issuesReport and exploreReportsExplorationsDimensions and metricsAnalytics IntelligenceThe Analytics appHow data is stored and displayedAdvertising and attributionUnderstand advertisingUnderstand attributionManage and configure attributioniOS conversion measurementAudiences and remarketingSet up audiencesUse audiences for advertising and remarketing Audiences for common marketing objectivesTroubleshoot audiencesManage accounts, properties, and users[GA4] SubpropertiesRoll-up propertiesGoogle Analytics 360[GA4] SubpropertiesRoll-up propertiesHow data is stored and displayedPolicies and data privacyData privacy and securitySet up AnalyticsSet up Analytics for a website and/or app
+Set up Analytics for a website and/or appDiscover how to set up Google Analytics for your website or app by creating a Google Analytics property, adding a data stream, and adding your Google Analytics code.Note: The previous link opens to the last Analytics property you accessed. You must be signed in to a Google Account to open the property. You can change the property using the property selector.Do you have multiple websites and/or apps? Learn how to structure your Analytics account.
+Create an Analytics account
+Your first step is to set up an Analytics account, unless you already have one. Skip to creating a property unless you want to create a separate account for this website and/or app. For example, you might want to create another account if this website and/or app belong(s) to a separate business.
+Go to https://analytics.google.com.
+If this is your first time using Google Analytics, click Start Measuring. If you already have an account set up, go to step 2.
+In Admin, click Create, then select Account.
+Note: The previous link opens to the last Analytics property you accessed. You must be signed in to a Google Account to open the property. You can change the property using the property selector. You must be a Viewer or above at the account level to create an Analytics account.
+Provide an account name. Configure the data-sharing settings to control which data you share with Google.
+Click Next to add the first property to the account.
+Get insights on your website or app, at no cost
+Use Google Analytics to understand the full customer journey, from first visit to purchase.
+Get started
+Create a new Google Analytics property
+You need the Editor role to add properties to a Google Analytics account. If you created this account, you automatically have the Editor role.
+You can add up to 2,000 properties (any combination of Universal Analytics and Google Analytics properties) to an Analytics account. To raise this limit, contact your support representative.
+To create a property:
+Are you continuing from "Create an Analytics account", above? If so, skip to step 2. Otherwise, in Admin, click Create, then select Property.
+Enter a name for the property (e.g. "My Business, Inc website") and select the reporting time zone and currency. If a visitor comes to your website on a Tuesday in their time zone, but it's Monday in your time zone, the visit is recorded as having occurred on Monday.
+If you choose a time zone that honors Daylight Savings Time, Analytics automatically adjusts for time changes. Use Greenwich Mean Time if you don't want to adjust for Daylight Savings Time.
+Changing the time zone only affects data going forward. If you change the time zone for an existing property, you may see a flat spot or a spike in your data, caused by the time shift forwards or backwards, respectively. Report data may refer to the old time zone for a short period after you update your settings, until Analytics servers have processed the change.
+Note: Don't change your property time zone more than once per day, based on the current property timezone. The second change might not be processed as expected by the system.
+Click Next. Select your industry category and business size.
+Click Next. Select how you intend to use Google Analytics.
+Google Analytics tailors the set of default reports based on the information you provide about how you intend to use Analytics. For example, if you choose "Generate more leads," you will see a collection of reports to help you measure lead generation. Learn more about the business objectives reports collection.
+Click Create and (if you are setting up a new account) accept the Analytics Terms of Service and the Data Processing Amendment.
+Continue to Add a data stream to start collecting data.
+Add a data stream
+Are you continuing from "Create a property", above? If so, skip to step 2. Otherwise,
+In Admin, under Data collection and modification, click Data Streams.
+Note: The previous link opens to the last Analytics property you accessed. You must be signed in to a Google Account to open the property. You can change the property using the property selector. You must be an Editor or above on the Analytics account at the property level to add a data stream.
+Click Add stream.
+Click iOS app, Android app, or Web.
+iOS app or Android app
+When you add an app data stream, Analytics creates a corresponding Firebase project and app data stream, and automatically links the Firebase project to your property if your project and property are not already linked.
+You can link to an existing Firebase project, however you have to do this from Firebase (and for a Google Analytics property that is not yet linked with Firebase.) Learn how.
+Enter the iOS bundle ID or Android package name, the app name, and for iOS, the App Store ID, then click Register app.
+Click Next and follow the instructions to download the config file for your app.
+Click Next and follow the instructions to add the Google Analytics for Firebase SDK to your app.
+Click Next.
+Run your app to verify installation of the SDK and that the app is communicating with Google servers.
+Click Finish. (Alternatively, click Skip this step if you want to complete app setup at a later time.)
+Web
+Enter the URL of your primary website, e.g., "example.com", and a Stream name, e.g. "Example, Inc. (web stream)".
+You have the option to enable or disable enhanced measurement. Enhanced measurement automatically collects page views and other events. Once the data stream has been created, you can always go back and individually disable the enhanced measurement events you don’t want to collect. So, we recommend that you enable enhanced measurement now.
+Click Create stream.
+Measure user activity with recommended events in Google Analytics
+For subtitles in your language, turn on YouTube captions. Select the Settings icon
+found in the video player, then select Subtitles/CC and choose your language.
+Watch a step-by-step video to see how to set up Google Analytics on your website using Google Tag Manager.
+Set up data collection
+To begin seeing data in your new Google Analytics property, you'll need to do one of the following:
+Add the tag to a website builder or CMS-hosted website (e.g., HubSpot, Shopify, etc.)
+See if your CMS lets you enter just your Google tag ID
+Many CMSs have native integrations with Google Analytics. If you're using one of the CMSs listed below, follow the instructions to find your Google tag ID and paste it into the Google Analytics field that your CMS provides.
+To find your Google tag ("G-") ID:
+In Admin, under Data collection and modification, click Data streams.
+Note: The previous link opens to the last Analytics property you accessed. You must be signed in to a Google Account to open the property. You can change the property using the property selector.You must be an Editor or above on the Analytics account at the property level to create.
+Click the data stream for which you need the ID.
+Under Stream Details, copy the Measurement ID (starts with "G-" or "AW-")
+Enter your Google tag ID into the field that your CMS provides:
+Blogger instructions
+Drupal instructions
+Duda instructions
+GoDaddy instructions
+Google Sites instructions
+HubSpot instructions
+Magento instructions
+MonsterInsights plugin (WordPress) instructions
+One.com instructions
+Shopify instructions
+Site Kit (WordPress plugin) instructions
+Squarespace instructions
+Typo3 instructions
+Wix instructions
+WooCommerce instructions
+All other website builders
+If you are using a CMS or website builder that doesn't provide a field to enter your Google tag ID, you'll need to paste your Google tag into your website using your CMS's custom HTML feature.
+In Admin, under Data collection and modification, click Data streams.
+Note: The previous link opens to the last Analytics property you accessed. You must be signed in to a Google Account to open the property. You can change the property using the property selector.You must be an Editor or above on the Analytics accountat the property level to create.
+Click Web.
+Click the data stream for your website.
+Under Google tag, click View tag instructions.
+On the Installation instructions page, select Install manually:
+On the screen, you’ll see the JavaScript snippet for your account's Google tag. Your Google tag is the entire section of code that appears, beginning with:
+<!-- Google tag (gtag.js) -->
+and ending with
+</script>
+Paste your Google tag to your website using your CMS's custom HTML feature. Follow your CMS's instructions on how to do this below:
+Cart.com: Contact Cart.com support for instructions.
+PrestaShop: Contact PrestaShop support for instructions.
+Salesforce (Demandware): Contact Salesforce support for instructions.
+VTEX: Contact VTEX support for instructions.
+Weebly instructions
+Data collection may take up to 30 minutes to begin. You can then use the Realtime report to verify that you're receiving data.
+Add the Google tag directly to your web pages
+You need access to the HTML for your web pages. Ask your web developer to perform these steps if you're unable to complete the steps yourself.
+In Admin, under Data collection and modification, click Data streams.
+Note: The previous link opens to the last Analytics property you accessed. You must be signed in to a Google Account to open the property. You can change the property using the property selector.You must be an Editor or above on the Analytics accountat the property level to create.
+Click Web.
+Click the data stream for your website.
+Under Google tag, click View tag instructions.
+On the Installation instructions page, select Install manually:
+On the screen, you’ll see the JavaScript snippet for your account's Google tag. Your Google tag is the entire section of code that appears, beginning with:
+<!-- Google tag (gtag.js) -->
+and ending with
+</script>
+Paste your Google tag immediately after the <head> on each page of your website.
+Data collection may take up to 30 minutes to begin. You can then use the Realtime report to verify that you're receiving data.
+Don't see a Data Streams option in the Property column? You are in a Universal Analytics property instead of the Google Analytics property that you just created. Use the property selector or Admin to navigate to your new Google Analytics property.
+Add your tag using Google Tag Manager
+For basic data collection, follow the Google Tag Manager help center instructions to add the Google Analytics: Google Analytics Configuration tag.
+To set up data collection for an app, read these instructions.
+Next steps
+After you have set up data collection, complete additional configurations to get more useful data out of Analytics. Review the checklist to learn which configurations are right for you to collect more data, filter unwanted data, and power advertising.
+Was this helpful?How can we improve it?Submit
+Need more help? Try these next steps:
+Post to the help community
+Get answers from community members
+Contact us Tell us more and we’ll help you get there
+false
+Set up Analytics1 of 20Set up Analytics for a website and/or app2 of 20Configure your Google Analytics settings using Task Assistant3 of 20Configure your Google Analytics property using Setup Assistant4 of 20[GA4] Set up Analytics for a CMS-hosted website5 of 20[GA4] Add a Google Analytics 4 property (to a site that already has Analytics)6 of 20Set up data collection for an app7 of 20Get more useful data out of Analytics8 of 20[GA4] Set up cross-domain measurement9 of 20Identify unwanted referrals10 of 20[GA4] Data redaction11 of 20Filter, report on, or restrict access to data subsets12 of 20URL builders: Collect campaign data with custom URLs13 of 20Set custom campaign data14 of 20[GA4] Find your Google tag ID15 of 20Accelerated Mobile Pages (AMP)16 of 20Get started with the Google tag17 of 20[GA4] Filter incoming data18 of 20[GA4] About deep links19 of 20About regular expressions (regex)20 of 20Ask Advisor in Google Analytics (Beta)
+©2026 Google
+Privacy Policy
+Terms of Service
+Language
+català‎dansk‎Deutsch‎español‎español (Latinoamérica)‎Filipino‎français‎hrvatski‎Indonesia‎italiano‎latviešu‎lietuvių‎magyar‎Nederlands‎norsk‎polski‎português‎português (Brasil)‎română‎slovenčina‎slovenščina‎suomi‎svenska‎Tiếng Việt‎Türkçe‎čeština‎Ελληνικά‎български‎русский‎српски‎українська‎‏עברית‏العربيةहिन्दी‎ไทย‎中文（简体）‎中文（繁體）‎日本語‎한국어‎ English‎
+Enable Dark Mode
+Send feedback on... This help content & information General Help Center experience
+SearchClear searchClose searchGoogle appsMain menu
+13767151265192217317
+true
+Search Help Center false
+true
+true
+true
+true true 69256
+false
+false
+false false
+false

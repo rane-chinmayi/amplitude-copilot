@@ -1,0 +1,35 @@
+[GA4] Segment - Analytics Help
+Skip to main content
+Analytics HelpSign inGoogle HelpHelp CenterGet started with AnalyticsCollect and manage dataReport and exploreAdvertising and attributionAudiences and remarketingManage accounts, properties, and usersGoogle Analytics 360Policies and data privacyCommunityAnalyticsPrivacy PolicyTerms of ServiceSubmit feedback Send feedback on...This help content & informationGeneral Help Center experienceNextHelp CenterCommunityAnnouncementsAnalytics
+Contact us
+Get started with AnalyticsIntroduction to AnalyticsSet up AnalyticsGuides and videosTroubleshootGlossaryCollect and manage dataEvents and key eventsImport data from external systemsIntegrationsMeasure ecommerceMeasure lead generationFirst-party dataTroubleshoot data issuesReport and exploreReportsExplorationsDimensions and metricsAnalytics IntelligenceThe Analytics appHow data is stored and displayedAdvertising and attributionUnderstand advertisingUnderstand attributionManage and configure attributioniOS conversion measurementAudiences and remarketingSet up audiencesUse audiences for advertising and remarketing Audiences for common marketing objectivesTroubleshoot audiencesManage accounts, properties, and users[GA4] SubpropertiesRoll-up propertiesGoogle Analytics 360[GA4] SubpropertiesRoll-up propertiesHow data is stored and displayedPolicies and data privacyData privacy and securityGlossary[GA4] Segment
+[GA4] SegmentA subset of users, sessions, or events.
+You can apply segments to explorations to focus on specific data sets.
+Related resources
+Segment builder
+Was this helpful?How can we improve it?Submit
+Need more help? Try these next steps:
+Post to the help community
+Get answers from community members
+Contact us Tell us more and we’ll help you get there
+false
+Glossary1 of 83[GA4] A/B test2 of 83[GA4] Analytics Academy3 of 83[GA4] Attribution4 of 83[GA4] Audience5 of 83[GA4] Cardinality6 of 83[GA4] Channel7 of 83[GA4] Channel grouping8 of 83[GA4] Collection9 of 83[GA4] Consent checks10 of 83[GA4] Consent settings11 of 83[GA4] Consent signal12 of 83[GA4] Consent type13 of 83[GA4] Conversion14 of 83[GA4] Data quality15 of 83[GA4] Detail report16 of 83[GA4] Device ID17 of 83[GA4] Engagement18 of 83[GA4] Event19 of 83[GA4] Event parameters20 of 83[GA4] Experiment21 of 83[GA4] Explorations22 of 83[GA4] Free-form exploration23 of 83[GA4] Funnel exploration24 of 83[GA4] Google Analytics 4 property25 of 83[GA4] In-app purchase26 of 83[GA4] Intelligence27 of 83[GA4] Join key28 of 83[GA4] Landing page29 of 83[GA4] Measurement ID30 of 83[GA4] Measurement Protocol31 of 83[GA4] Multivariate test32 of 83[GA4] Overview report33 of 83[GA4] Page path34 of 83[GA4] Page title35 of 83[GA4] Primary dimension36 of 83[GA4] Report37 of 83[GA4] Reports snapshot38 of 83[GA4] Secondary dimension39 of 83[GA4] Segment40 of 83[GA4] Segment overlap41 of 83[GA4] Session42 of 83[GA4] Snippet43 of 83[GA4] Stream ID44 of 83[GA4] Summary card45 of 83[GA4] Tag46 of 83[GA4] Topic47 of 83[GA4] User exploration48 of 83[GA4] User-ID49 of 83[GA4] Variant50 of 83Account51 of 83Active users in last 30 minutes52 of 83Admin page53 of 83App stability overview54 of 83Cohort55 of 83Data filters56 of 83Data stream57 of 83Destination ID: Definition58 of 83Destination: Definition59 of 83Dimension60 of 83Ecommerce61 of 83Ecommerce events62 of 83GBRAID URL parameter63 of 83Google Analytics 36064 of 83Google tag ID: Definition65 of 83gtag.js66 of 83Key event67 of 83Latest app release overview68 of 83Metric69 of 83Organization70 of 83Property71 of 83Property selector72 of 83Recommended event73 of 83Report library74 of 83Roles75 of 83Setup Assistant76 of 83The Google tag77 of 83Touchpoint78 of 83Universal Analytics property79 of 83User80 of 83User activity by cohort81 of 83User activity over time82 of 83User properties83 of 83User stickiness
+©2026 Google
+Privacy Policy
+Terms of Service
+Language
+català‎dansk‎Deutsch‎español‎español (Latinoamérica)‎Filipino‎français‎hrvatski‎Indonesia‎italiano‎latviešu‎lietuvių‎magyar‎Nederlands‎norsk‎polski‎português‎português (Brasil)‎română‎slovenčina‎slovenščina‎suomi‎svenska‎Tiếng Việt‎Türkçe‎čeština‎Ελληνικά‎български‎русский‎српски‎українська‎‏עברית‏العربيةहिन्दी‎ไทย‎中文（简体）‎中文（繁體）‎日本語‎한국어‎ English‎
+Enable Dark Mode
+Send feedback on... This help content & information General Help Center experience
+SearchClear searchClose searchGoogle appsMain menu
+10984577341974611364
+true
+Search Help Center false
+true
+true
+true
+true true 69256
+false
+false
+false false
+false

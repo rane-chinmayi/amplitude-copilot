@@ -1,0 +1,323 @@
+Comparing metrics: Google Analytics vs. Universal Analytics - Analytics Help
+Skip to main content
+Analytics HelpSign inGoogle HelpHelp CenterGet started with AnalyticsCollect and manage dataReport and exploreAdvertising and attributionAudiences and remarketingManage accounts, properties, and usersGoogle Analytics 360Policies and data privacyCommunityAnalyticsPrivacy PolicyTerms of ServiceSubmit feedback Send feedback on...This help content & informationGeneral Help Center experienceNextHelp CenterCommunityAnnouncementsAnalytics
+Contact us
+Get started with AnalyticsIntroduction to AnalyticsSet up AnalyticsGuides and videosTroubleshootGlossaryCollect and manage dataEvents and key eventsImport data from external systemsIntegrationsMeasure ecommerceMeasure lead generationFirst-party dataTroubleshoot data issuesReport and exploreReportsExplorationsDimensions and metricsAnalytics IntelligenceThe Analytics appHow data is stored and displayedAdvertising and attributionUnderstand advertisingUnderstand attributionManage and configure attributioniOS conversion measurementAudiences and remarketingSet up audiencesUse audiences for advertising and remarketing Audiences for common marketing objectivesTroubleshoot audiencesManage accounts, properties, and users[GA4] SubpropertiesRoll-up propertiesGoogle Analytics 360[GA4] SubpropertiesRoll-up propertiesHow data is stored and displayedPolicies and data privacyData privacy and security
+Comparing metrics: Google Analytics vs. Universal AnalyticsWhat to expect when comparing metrics between Google Analytics and Universal AnalyticsAs you set up Google Analytics, you may want to compare the reported results in your Google Analytics property against those in your Universal Analytics property. This article explains the extent to which you can and cannot compare metrics between Universal Analytics and Google Analytics.
+In this article:
+Users
+Pageviews
+Purchases
+Sessions
+Session/Traffic based Acquisition metrics
+Key events
+Bounce rate
+Event count
+Users
+In Universal Analytics, there are 2 User metrics: Total Users, and New Users. In Google Analytics, there are 3 User metrics: Total Users, Active Users, and New Users.
+Metric
+UA
+Google Analytics
+Total Users
+Primary user metric in UA: Total number of users
+Total number of unique users who logged an event
+New Users
+Number of users who interacted with your site for the first time
+Number of users who interacted with your site or launched your app for the first time
+The metric is measured by the number of new unique user IDs that logged the first_open or first_visit event.
+Active Users
+N/A
+Primary user metric in Google Analytics: Number of distinct users who visited your website or application. An active user is any user who has an engaged session or when Analytics collects:
+the first_visit event or engagement_time_msec parameter from a website
+the first_open event or engagement_time_msec parameter from an Android app
+the first_open or user_engagement event from an iOS app
+Keep in mind
+Universal Analytics highlights Total Users, shown as Users in most reports, whereas Google Analytics focuses on Active Users, also shown as Users. So, while the term Users appears the same, the calculation for this metric is different between UA and Google Analytics since UA is using Total Users and Google Analytics is using Active Users.
+Depending on how frequently your users return to your website, the Total Users metric in UA and the Active Users metric in Google Analytics may be more or less similar.
+You can compare Total Users from UA to Total Users in Google Analytics by using Explorations in Google Analytics to find your total users number. These numbers may be more comparable than the Users metrics in the Google Analytics reports due to the differences in definitions.
+The 2 types of properties could be using different settings, such as user-identity spaces, for example, the Google Analytics property might be using User-ID while the Universal Analytics property is using Client ID.
+Your UA reports may be excluding data based on filters. Google Analytics properties currently don't support these filters.
+It isn't unusual for there to be apparent discrepancies in user related data between Google Analytics and Universal Analytics. Pageview discrepancies of up to 10% and user and session related discrepancies of up 20% can be expected and are not a cause for concern. Discrepancies arise, even if both products have similar fair comparable environments set up, because they use metrics with slightly different definitions and which can vary from business to business depending on several factors.
+Pageviews
+In general, Pageviews should be fairly close between UA and Google Analytics, generally within a few percentage points, since the Google tag fires on each page and generates a pageview. However, the differences can vary based on any filters you may have set up in Universal Analytics or Google Analytics.
+Metric
+UA
+Google Analytics
+Pageview
+Total number of pages viewed. Repeated views of a single page are counted.
+aka Views: Total number of app screens and/or web pages your users saw. The Views metric found in the reporting interface is the combination of pageviews and screenviews. Repeated views of a single screen or page are counted.
+Unique Pageview
+Total number of pages viewed but duplicates are not counted
+N/A
+Keep in mind
+Universal Analytics measures screenviews in separate mobile-specific properties, whereas Google Analytics combines both web and app data in the same property. If you're measuring both web and app data in your Google Analytics property, be sure to take the additional app traffic into consideration when comparing pageview metrics between the 2.
+Universal Analytics allows for additional filtering options which may impact the data contained in the view you are comparing to. For example, if you use a filter to exclude certain geographic regions, then your pageview counts between UA and Google Analytics may differ more.
+Google Analytics properties currently do not support filters, while data in Universal Analytics reporting may be subject to view filters that exclude data. For example, both UA and Google Analytics offer the ability to filter out internal IP traffic and unwanted referrals, but UA may have additional filters applied. When you're comparing, be sure that you have the same filters in place for both properties.
+For some Universal Analytics properties, it's common practice to set up a manual pageview for single-page applications (SPAs). That's because the automatic pageview couldn’t measure pageviews for SPAs out of the box. In Google Analytics, you don't need to implement custom tagging. Instead, you can turn on enhanced measurement to measure these automatically.
+Purchases
+Web purchase counts should match closely. We never expect all events to be collected perfectly, and purchase events are no exception to that rule, however these events are atomic and critical so event counts should match closely across UA/Google Analytics.
+Be sure you are collecting a unique transaction_id value in both UA and Google Analytics to ensure you are comparing similar metrics.
+Metric
+UA
+Google Analytics
+Purchases
+purchase events are fired within the Enhanced Ecommerce model
+Data is pulled from a products array via Google Analytics-provided JavaScript and collected in a purchase event when you choose to send that event
+purchase events are recommended and collect data in a similar fashion to UA, but there are differences
+Doesn't provide additional JavaScript for array collection and expects you to provide the items array when collecting a purchase event on your own (though the same advice is given with regard to populating a data layer object)
+Keep in mind
+The transaction_id parameter, if not consistently and properly applied, could create noticeable differences when comparing data. For data quality and comparison purposes, ensure that this data is collected consistently as per the documentation.
+Be sure to use all of the required parameters for Google Analytics ecommerce implementation, as well as for UA, to ensure that ecommerce data is recorded properly.
+Your UA reports may be excluding data based on view filters.
+If you're comparing recent reports, you might notice differences because Google Analytics is still processing data. For example, Google Analytics can update attributed key events for up to 7 days after the key events is recorded.
+Sessions
+Metric
+UA
+Google Analytics
+Session
+Period of time a user is actively engaged with your website or app
+Has defined parameters for what may cause it to end, for example, a session will end when there has been more than a 30-minute period of inactivity, depending on the session timeout settings, the timestamp has been cut off at midnight, according to the timezone the view is set up in, or new campaign parameters are encountered.
+If a user comes back after a session timeout, it will start a new session.
+If the user is on the website when midnight arrives, a new session will be started.
+If a user picks up new campaign parameters while on the website, a new session will be started.
+aka Session Start
+To determine the session that each event comes from, the session_start event generates a session ID and Analytics associates the session ID with each subsequent event in the session
+A session will end when there has been more than a 30-minute period of inactivity, depending on the session timeout settings.
+Sessions aren't restarted at midnight or when new campaign parameters are encountered.
+If a user comes back after a session timeout, it will start a new session.
+Keep in mind
+The difference in session count between UA and Google Analytics can vary from business to business depending on several factors, including:
+Geography - consider the timezones of your users and how likely they are to cross the midnight threshold to restart a session. This is especially relevant if you have a global customer base.
+Use of UTMs on owned websites or apps - Using UTM tagging on your own website isn't recommended since it will reset the session in Universal Analytics. If you do use UTMs on your own website, you may notice a much higher count of sessions in UA than in Google Analytics.
+Filters - The data in UA reporting may be subject to view filters that exclude data. The data in Google Analytics reporting for Google Analytics 360 customers may be subject to filters that define which data from a source property appears in a subproperty. However, Google Analytics still generates a session ID when you filter out the session_start event from a subproperty.
+Estimation - Google Analytics properties use a statistical estimate of the number of sessions that occurred on your website or app by estimating the number of unique session IDs, while Universal Analytics properties don't estimate the number of sessions. The estimates used by Google Analytics properties ;more efficiently count sessions with high accuracy and low error rate. Learn more About Analytics sessions.
+Session/Traffic based Acquisition metrics
+Metric
+UA
+Google Analytics
+Session/Traffic based Acquisition metrics
+Found in the Acquisition section in a number of different reports, such as the Channels report or the Source/Medium report
+Channel or Source/Medium is the dimension being analyzed against metrics, such as Users and Sessions.
+The default attribution lookback window for a session is determined by the “Campaign timeout” setting. By default, it’s 6 months.
+Traffic acquisition metrics can be found in the Traffic Acquisition report.
+The dimensions of Channel or Source/Medium are measured against metrics, such as Users and Sessions.
+Note that the main differences you may see between UA and Google Analytics for acquisition metrics are aligned with the differences you will notice for the metrics of Users or Sessions.
+The attribution conversion window for sessions is determined by the “All the other conversion events” setting. By default, it’s 90 days. Learn more about selecting or updating attribution settings.
+Keep in mind
+Since Sessions and Users are the main metrics of comparison for acquisition metrics, refer to the Sessions and Users sections in this article.
+Conversion and key events
+If your Google Analytics key events are based on destination URLs or on UA events, such as Category/Action/Label, for which you have set up equivalent Google Analytics conversion events, conversion and key event counts can be quite close. However, there are important differences between UA and Google Analytics that may make it difficult to compare the counts.
+Metric
+UA
+Google Analytics
+Key events
+You define a goal to indicate that a particular user action is to be considered a conversion. For example, if you define a “Form Submit” goal, a conversion will be registered each time a user submits the form.
+UA counts only one conversion per session for each goal. So, if a user submits the form twice during the same session, only one conversion will be counted for the “Form Submit” goal.
+You specify a key event for each action that you want to count as a key event. For example, if you specify that the “Form Submit” event is a key event, a key event will be registered each time a user submits the form.
+Google Analytics usually counts every instance of the key event, even if the same key event is recorded multiple times during the same session. So, if a user submits the form twice during the same session, 2 key events will be counted.
+To reduce key event count differences between your UA property and corresponding Google Analytics property, update your Google Analytics key event counting method setting to Once per session.
+Keep in mind
+Universal Analytics supports 5 goal types: destination, duration, pages/session, smart goals, and event goals. Google Analytics, in contrast, supports key events. It may not always be possible to use Google Analytics key events to precisely duplicate some UA goal types. For example, it’s not possible to duplicate a smart or duration goal using Google Analytics key events.
+UA counts only one key event per session, for the same goal. Google Analytics usually counts multiple key events per session, for the same key event. To reduce key event count differences between your UA property and corresponding Google Analytics property, update your Google Analytics key event counting method setting to Once per session.
+Your UA reports may be excluding data based on view filters.
+If you're comparing recent reports, you might notice differences because Google Analytics is still processing data. For example, Google Analytics can update attributed key events for up to 7 days after the key event is recorded.
+More reasons for differences in key event counts
+Most common reasons for differences
+The following tables outline the most common reasons for differences between similar UA conversions and GA4 key events. When encountering differences, reviewing and aligning these common drivers is the best place to start to reduce discrepancies. In most cases, aligning these products, settings, or setup differences will resolve major counting differences.
+In Google Analytics
+These are the top drivers of differences between UA and GA4 based on product, setup, or setting choices made in Google Analytics:
+Description
+Solution / Recommendation
+Counting method: UA counts one goal per session, while GA4 lets you choose between once per event or once per session.
+For example, when a user completes a goal 5 times in a single session, UA will show one conversion while GA4 will show 1 or 5 key events, depending on the counting method you choose.
+Note: Once per event is the default counting method for most key events, except those created in an automatically created GA4 property or using the Setup Assistant goals migration tool.
+The default settings can cause a higher key event count in GA4.
+Update the key event counting settings. To align GA4 counting to UA goals counting, make sure the GA4 key event counting method is set to Once per session.
+Notes:
+The GA4 UI will recognize that this isn't a recommended setting as it can lead to the under counting key events. For example, if you're a lead-generation business, you want to count every lead submission, not just one per user.
+Google Tag Manager has controls over how and when tags can fire. Learn more about Tag firing options.
+This recommendation isn't relevant when comparing UA ecommerce transactions because they're already counted as Once per event in UA.
+Site coverage: If the UA tag is implemented across a different set of pages within a website than the GA4 tag, measurement gaps can emerge. Especially if a landing page from a Google Ads ad isn't accurately tagged, it could be that the information you need to accurately measure and attribute a key event to that ad interaction isn't available.
+Depending on whether GA4 tags are implemented on more or fewer pages than UA tags, GA4 will respectively show more or fewer users, sessions, page views, and subsequent key events.
+We recommend relying on a standardized method of implementation to make sure tags are implemented across your site (for example, the Google tag or Google Tag Manager). Also consider settings you may have configured in the past, such as cross-domain measurement.
+Use the Tag coverage summary to confirm if the Google tag is implemented across your website. Learn more About the Tag coverage summary.
+To minimize discrepancies, rely on the same tag implementation methods for UA and GA4.
+Implementation errors: When setting up data collection for GA4, it's possible a tag is implemented incorrectly. This can result in noticing no data at all in your GA4 property, but in some instances, you’ll notice partial data in your GA4 property. If so, you’ll notice discrepancies when comparing it to UA.
+It's likely that a broken implementation shows lower key event counts for GA4 than UA.
+We recommend you rely on standardized implementation methods outlined in the Developers Guide instead of non-standard implementations. A tag management system can help bring consistency in implementations.
+Using the Google tag is sufficient for many users as this allows the use of the same tag for both Google Ads and Google Analytics (Developer Guide).
+Filters: UA filters work very differently from GA4 filters. It's common for UA filters to be in place and significantly alter the data inside a UA property, for example, "only show data from France".GA4 has a very different set of possible filters.
+If UA filters reduce reported traffic, this can result in GA4 showing higher amounts of traffic.
+Data filters: Create include/exclude filters for internal and developer traffic.
+Event modifications and custom events: Modify event names and parameters.
+Identify unwanted referrals: Include only the referrals you want.
+Create subproperties (360 only): Create fully-functional properties that are subsets of the data in your 360 properties.
+Referral exclusions:
+Exclusions set in UA can affect key events attributed to Google Ads. If these exclusions are not set up accordingly in GA4, the credit attributed to Google Ads can differ, for example, exclusions for payment providers like PayPal are often made in UA.
+If referrers were excluded in UA but not in GA4, GA4 key events can be misattributed in GA4, resulting in fewer key events attributed to the Google Paid channel when compared to UA. Referral exclusions affect the amount of key event credit.
+Match referral exclusions settings between UA and GA4 to minimize incorrect attribution. Note that excluding referrals does not change the overall amount of key events in the Google Analytics property it only affects how key events are attributed.
+Learn more about Referral exclusions in UA and how to Identify unwanted referrals in GA4.
+In Google Ads
+These are the top drivers of differences between similar UA and GA4 key events based on product, setup, or setting choices made in Google Ads.
+Description
+Solution / Recommendation
+Key event lookback window: Key event lookback window settings in Google Ads define how long after a Google Ads touchpoint credit can be attributed to that touchpoint. Often this setting is set to a value of choice, for example, 90 days.
+A difference in settings can mean a touchpoint gets attributed key event credit by UA while it doesn't by GA4, or vice versa.
+Align your key event lookback window settings in Google Ads for both the UA and GA4 key event actions, inline with the setting used in the GA4 property settings.
+Attribution model settings (in Google Ads): Attribution models affect how credit is distributed across touchpoints in a conversion path. Differences in attribution model settings in Google Ads between the UA and GA4 can result in different credit allocations across campaigns in a Google Ads account or manager account (MCC).
+Note: Changing attribution settings in Google Ads does not affect the overall amount of credited attributed to Google Ads.
+Align the attribution models in the key event settings in Google Ads.
+Default Attribution Setting in GA4: If you see a lower volume of GA4 conversions compared to Universal Analytics conversions in Google Ads, one reason could be that the "channels that can receive credit", their default GA4 attribution setting was set to Google Paid and Organic for all properties created before June 2023. GA4 properties created after June 2023 are defaulted to the "Google Paid Channels" setting. Changing this setting in Google Analytics to Google Paid Only can help increase the volume of GA4 conversions relative to UA conversions in Google Ads.
+This change can be made in the Attribution settings under Admin>Data Display>Attribution Setting>Channels that can receive credit.
+Reporting methodologies in Google Ads: In Google Ads, to show which ad drove a key event, key events are reported based on ad interaction time reporting. In Google Analytics, key events are reported differently, using key event time reporting.
+For example, if a key event that took place on May 10th, it can be attributed to an ad click on May 5th. Google Analytics generally reports this key event on May 10th, while Google Ads will report this key event on May 5th.
+This effect applies both to UA and to GA4 imported events in Google Ads, although differences in settings (like attribution model or key event lookback window) between key event actions can amplify it.
+If you align settings across key event actions imported into Google Ads, you minimize the effects of reporting methodologies.
+Keep in mind that key events can be attributed during the full length of the key event lookback window, up to 90 days in Google Ads, so it can take up to 90 days for GA4 and UA to fully compare to one another.
+To assess whether a key event pair can be compared, or whether you must wait longer, use the Path metrics report in Google Ads for the UA key event to determine how long it takes the majority of users to interact with a key event on the path to a key event.
+Note: More than 95% of key events get attributed within the first 14 days. This means you must use Google Ads data in your comparison between UA and GA4 that is at least 14 days old.
+Other reasons for discrepancies
+If after aligning the above drivers of differences, you’re still encountering significant discrepancies between your UA conversions and GA4 key events, review the comprehensive list of drivers below.
+As a reminder, differences between similar UA conversions and GA4 key events are expected, but this list should help you align product, setup, and setting differences where possible to reduce discrepancies.
+In Google Analytics
+These are additional drivers of differences between similar UA and GA4 key events based on product, setup, or setting choices made in Google Analytics.
+Description
+Solution / Recommendation
+Ecommerce measurement: Google Analytics is compatible with various ecommerce schemas. You can implement the GA4 schema and the UA schema simultaneously, or rely on one schema for both properties. If you use two schemas, data discrepancies can emerge. Review the Developer Guide for more information.
+Differences in ecommerce schema can cause key event counts in GA4 to be higher or lower than in UA.
+When collecting ecommerce data for GA4, it's best practice to rely on the GA4 ecommerce schema (Developer Guide).
+It's recommended that you not rely on connected site tags if you’re using ecommerce measurement.
+It's also recommended you use the same ecommerce schema for UA and GA4 when comparing the two.
+Tag firing conditions: Hard-coded tag firing conditions can affect how and when a tag fires.
+Since setting up GA4 data collection in many cases consists of implementing new tags, it's possible previous firing conditions need to be implemented for GA4 for them to take effect. We recommend firing tags according to the same conditions to minimize data collection differences.
+If data collection is restricted in UA and not in GA4, then user, session, page view, and key event counts can be higher in GA4.
+It's recommended you rely on gtag.js or gtm.js (using GA4 tags) to collect data for GA4 properties.
+Tag firing conditions are not directly impacted if you use other forms of tagging (for example, connected site tags), but retagging is the first recommendation in case tag firing conditions cause tags to fire inconsistently across UA and GA4.
+Once tags are implemented, align any tag firing conditions. As an example of a condition, review this Developer Guide on measuring time.
+Exclude internal traffic: Settings can be used to filter out internal users (from a customer’s perspective, i.e., a customer’s employees) or test traffic.
+If settings differ in UA and GA4, the property without the exclusion filters is expected to show higher user, session, page views, and subsequent key events.
+It's recommended you align settings in UA and GA4 to minimize discrepancies. For more information, read this article for UA, and this article for GA4.
+Page changes based on browser history events: GA4’s enhanced measurement by default measures page changes based on browser history events; UA does not. This will cause higher pageviews in GA4 than UA and can lead to discrepancies.
+For example, if your site’s construction and usage patterns cause many pages to be loaded via changes in the browser history, enabling this setting will create measurement for these events. This will result in discrepancies from UA where these events haven't been measured.
+If you want pageview counts to more closely match between UA and GA4, disable the enhanced measurement setting in GA4. Learn more about enhanced measurement events.
+Other event sources (Audience triggers, Measurement Protocol, event editing, etc.): Generating these events and marking them as key events can cause key event volume inflation in GA4 if you compare the data on a property level with UA.
+Use matching setups for similar UA conversions and GA4 key events in Google Analytics.
+You can configure newly created events from these sources to distinct event names so that UA and GA4 measurement can match more closely. If it isn't possible to set up in the same exact way, the two should not be compared.
+Spam and bot filters:
+Spam: In UA, users must manually set up spam filters using a view filter, but GA4 works differently.
+Bots: In UA, users can disable bot filters in the view settings, they’re on by default. In GA4, bots are automatically filtered.
+Filters reduce traffic in UA. If not applied in GA4, GA4 will report more traffic and subsequent key events, in cases where spam/bot traffic manages to interact with a key event on the path to a key event.
+Enable the bot filtering setting in UA, and consider adding spam filters in UA if you’re receiving spam.
+URL parameter exclusions: In UA, customers can have a goal configured to exactly match a particular URL. In GA4, since there are no URL parameter exclusions, the URL can have many versions that wouldn’t be caught in the definition for the key event.
+Confirm if URL parameter exclusions are used in UA to understand potential differences in GA4.
+DDA model for key events and revenue: In UA, the attribution model is last non-direct click for goals. GA4 key events use the data-driven attribution (DDA) model by default, but are modifiable.
+Depending on how credit shifts based on DDA, users can notice more or less credit being attributed to paid (Google) channels. Note that the attribution model doesn't affect the overall amount of key events for a given event.
+Although not recommended, this can be tested/quantified by switching the property’s attribution model to Last click in GA4.
+Note: Since attribution models within Google Analytics don't affect the overall amount of key events within a property, it’s recommended to first troubleshoot all other drivers of discrepancies to minimize overall property-level differences for key event pairs like similar key events in UA and GA4.
+Time zone differences and campaign reset: UA cuts a session off at midnight and restarts a session with new campaign parameters; GA4 does not. This can lead to session discrepancies, which can then lead to goals/session key event discrepancies.
+This isn't expected to drive any significant differences in the total amount of key events in a given property. It's expected to only be visible if individual days are compared in UA vs GA4.
+No direct solution – this has been resolved in GA4.
+Pageview measurement configuration differences: Pageview measurement based on browser history events can be disabled in GA4. Single-page sites don’t get proper measurement forwarded to GA4 when using connected site tags.
+GA4 can be configured to measure pageviews based on browser history events; UA doesn't do this. This leads to richer measurement in GA4 but can be a source of discrepancies. You can disable this setting if you want the numbers to more closely align between UA and GA4.
+Single page application measurement can be set up for UA following this Developer Guide. This won't fully align UA with GA4 but can minimize differences for single-page sites.
+Google signals and User ID: These settings help deduplicate users in GA4 properties. In UA, both settings only affect a few reports and a separate view. In GA4, they affect all information in the property.
+Turning on Google signals and User ID in GA4 reduces new/overall user counts, connecting interactions that in UA would be considered from multiple users. As such, credit can be attributed differently. These features aren't expected to affect the overall amount of conversions within Google Analytics but can result in differences in exports to Google Ads. If an advertiser measures engaged-view conversions (EVCs), they can be influenced by the use of Google Signals and User ID.
+No direct solution – GA4 deduplication provides better insight into how users interact with a customer’s assets.
+We recommend implementing both features in both platforms to minimize discrepancies, although they can't be prevented.
+Session timeouts: You can adjust session timeout settings. If these are changed from their default, it can influence traffic counts and attribution.
+It's recommended that you rely on the default settings. If you changed session timeouts in UA, you should adjust this setting in GA4, too. Learn more About Analytics sessions.
+Cookie override
+When you change cookie settings in UA, you need to match the setting when you configure GA4.
+Reducing cookie expiration dates can affect attribution and result in differences in key event attribution. Learn more about configuring your Google tag settings.
+Use of auto-tagging plus manual tagging (in the same URL)
+You can use auto-tagging plus manual tagging in the same URL, but there are cases where this won't work.
+Choice of dimensions and metrics
+GA4 offers a larger number of acquisition dimensions than UA. Because of this, not all possible combinations of reporting dimensions can be compared between UA and GA4.
+App measurement implementation differences between UA and GA4
+It’s recommended that you rely on one SDK where possible. Note that a very small subset of users can currently collect app data in UA. Users must implement the Google Analytics for Firebase SDK if they want to collect app data and report on it using GA4 properties.
+For connected site tags (including sideloading) only: Connected tags load sequentially; that is, the GA4 tag loads after the parent tag (an existing gtag.js or analytics.js tag). This can mean:
+Loading multiple tags can have an impact on website speed.
+If users navigate extremely quickly through a website, tags may not have finished rendering, resulting in missed events.
+To minimize the risk of missing events, it's recommended you implement dedicated GA4 tags rather than relying on connected site tags or sideloading. In particular, for large, complex Analytics setups, you should avoid relying on connected site tags or sideloading.
+Inclusion of App and Web data in one property for GA4: GA4 unifies app and web data and events. If you combine app and web data in GA4, but didn't do anything similar in UA, this will cause a higher key event count in GA4.
+For the best comparison, you shouldn't include app data streams if your UA properties didn't contain app traffic. If the app stream is already included, you should segment reports to exclude app key events if you want to compare UA with GA4.
+Updated channel groupings: GA4 channel groupings can assign a key event to a channel in a different manner. Learn more about Default channel group.
+There's no option for users to override which key events are exported to Google Ads.
+In Google Ads
+These are additional drivers of differences between similar UA and GA4 key events based on product, setup, or setting choices made in Google Ads.
+Description
+Solution / Recommendation
+Key event modeling from consent mode: Key event modeling is available in Google Ads for advertisers who have create Google Ads conversions based on Analytics key events from properties implemented using gtag.js or Google Tag Manager.
+For analytics.js implementations, we don't offer modeling in Google Ads for conversions. This is because the consent state can't be defined accurately without having a gtag.js or Google Tag Manager implementation.
+If both UA and GA4 rely on tags compatible with consent mode, both can receive key event modeling in Google Ads.
+For a fair comparison, make sure you have a consent mode-compatible tag type for both your UA and GA4 properties.
+Engaged View measurement:
+GA4 is able to attribute a key event to a YouTube Engaged View ad interaction, even if that ad interaction didn't result in a website visit directly, but still led to a key event at a later point. This can result in a key event being exported to Google Ads, for which UA does not export any credit to Google Ads. This means that GA4 can attribute more key events to Google Ads if an advertiser has a significant amount of YouTube spend.
+In GA4, this shouldn't lead to an increase in key events for web traffic, but it’s possible that more credit is attributed to the Google Ads channel in GA4 than in UA, leading to better Google Ads performance.
+To compare this, you can segment campaign – or account level – reporting in Google Ads. Make sure to compare key event actions that measure the exact same key event action.
+It isn't possible to segment standard reports by Ad event type and key event source at the same time, so it’s difficult to make a direct comparison in the Google Ads UI.
+Credit export model: The model by which key events are exported from GA4 to Google Ads is different from UA. Where UA, and initially GA4, relied on a last non-direct click export model, GA4 now uses a final credit export model, allowing for fractional credit to be exported, even if the last non-direct touchpoint was not a Google Ads touchpoint.
+Although this isn't resulting in property-level differences, it can result in a different number of key events exported to Google Ads. This number can be both higher or lower when compared to UA and is dependent on a user’s independent user journeys.
+Final credit export has been launched as last non-direct click models aren't sufficient. This means that GA4 exports true cross-channel credit to Google Ads. You can't take specific actions to minimize the differences between UA and GA4.
+Ads-side key event counting method: Google Ads has a count setting that can be used to control one or multiple key events being counted within a set key event lookback window for a given user.
+It's recommended to align key event counting settings for UA and GA4 key event pairs. Learn more About conversion counting options.
+Applies to manually created GA4 properties and Smart Campaign customers: The GA4 Google paid channels export model attributes all key events exported to Google Ads to Google channels.
+This results in more key events being exported to Google Ads than the Paid and organic channels setting because it excludes non-Google paid channels from the key event path.
+Using Google paid channels can provide deeper insight into how paid Google interactions drive impact. This model isn't available in Universal Analytics, so it can be difficult to compare similar UA and GA4 events when imported to Google Ads.
+By default, new GA4 properties are set to Google paid channels.
+You can use the GA4 property-level attribution settings in the Admin section to control how key events are exported to Google Ads.
+In order for GA4 to factor in non paid channels when exporting conversions, use the Paid and organic channels setting. Learn more about selecting attribution settings.
+Bounce rate
+Metric
+UA
+Google Analytics
+Bounce rate
+Percentage of single page sessions in which there was no interaction with the page. A bounced session has a duration of 0 seconds. For example, if a user visits your website and reviews content on your homepage for several minutes, but leaves without clicking on any links or triggering any events being recorded as interaction events, then the session will count as a bounce.
+Percentage of sessions that were not engaged sessions. For example, if a user visits your website, reviews content on your homepage for less than 10 seconds, and then leaves without triggering any events or visiting any other pages or screens, then the session will count as a bounce.
+An engaged session is a session that lasts 10 seconds or longer, has 1 or more key events, or has 2 or more page or screen views. If a user doesn't have an engaged session, that is, they don't meet any of the criteria for an engaged session, then Google Analytics counts the session as a bounce.
+Keep in mind
+In Google Analytics, Bounce rate is the percentage of sessions that weren't engaged sessions. In other words, Bounce rate is the inverse of Engagement rate. In Universal Analytics, Bounce rate is the percentage of all sessions on your site in which users viewed only one page and triggered only one request to the Analytics server.
+Bounce rate, as it's calculated in Universal Analytics, is a reasonable measure of site engagement, but it has become less useful as websites and apps have changed. For example, it's possible for users to view a single-page application (SPA) and leave without triggering an event, which would be considered a bounce.
+Additionally, Bounce rate, as it's calculated in Google Analytics, provides a more useful way of measuring the level at which customers engage with your site or app. For example, if you operate a blog, you might not mind if customers visit your site to read an article and then leave. You probably care more about the number of customers who visit your site, don't find what they were looking for, and then quickly leave.
+Event count
+Events represent a fundamental data model difference between Universal Analytics and Google Analytics properties.
+Metric
+UA
+Google Analytics
+Total Events
+A Universal Analytics event has a Category, Action, and Label and is its own hit type.
+For example, an event can be set up to register that a sign-up button has been clicked. The event might have a Category of “CTA”, an Action of “Sign Up”, and a Label that is the destination URL.
+Total Events increments each time a Category/Action/Label event is triggered.
+N/A
+Event count
+N/A
+Every "hit" is an event and Google Analytics events have no notion of Category, Action, or Label. For example, when someone views one of your website pages, a page_view event is triggered.
+All actions are events. Each event name isn't necessarily unique, in fact, it’s best practice to reuse the same event name many times, differentiating the event by the parameter values collected. For example, a sign-up might have an event name of sign_up with parameters page_location, product, form_id, and so on. The same event name could and should be used on every sign up button across the site, whereas in UA, you would want to use unique event naming for each button.
+Keep in mind
+In Google Analytics, the sign_up event may or may not mean the same thing as in UA. If your website only has one signup form and only one button where the sign up event would fire, then these event counts may be quite close. However, if your website has multiple sign_up events, then comparing the event count between Google Analytics and UA may not be as straightforward and the numbers may not be close.
+Google Analytics reports don't display Category, Action, and Label. It’s better to rethink your data collection in terms of the Google Analytics model rather than port your existing event structure to Google Analytics.
+Was this helpful?How can we improve it?Submit
+Need more help? Try these next steps:
+Post to the help community
+Get answers from community members
+Contact us Tell us more and we’ll help you get there
+false
+©2026 Google
+Privacy Policy
+Terms of Service
+Language
+català‎dansk‎Deutsch‎español‎español (Latinoamérica)‎Filipino‎français‎hrvatski‎Indonesia‎italiano‎latviešu‎lietuvių‎magyar‎Nederlands‎norsk‎polski‎português‎português (Brasil)‎română‎slovenčina‎slovenščina‎suomi‎svenska‎Tiếng Việt‎Türkçe‎čeština‎Ελληνικά‎български‎русский‎српски‎українська‎‏עברית‏العربيةहिन्दी‎ไทย‎中文（简体）‎中文（繁體）‎日本語‎한국어‎ English‎
+Enable Dark Mode
+Send feedback on... This help content & information General Help Center experience
+SearchClear searchClose searchGoogle appsMain menu
+9093983739307653049
+true
+Search Help Center false
+true
+true
+true
+true true 69256
+false
+false
+false false
+false

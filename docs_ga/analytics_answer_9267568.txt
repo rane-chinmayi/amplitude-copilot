@@ -1,0 +1,53 @@
+About key events - Analytics Help
+Skip to main content
+Analytics HelpSign inGoogle HelpHelp CenterGet started with AnalyticsCollect and manage dataReport and exploreAdvertising and attributionAudiences and remarketingManage accounts, properties, and usersGoogle Analytics 360Policies and data privacyCommunityAnalyticsPrivacy PolicyTerms of ServiceSubmit feedback Send feedback on...This help content & informationGeneral Help Center experienceNextHelp CenterCommunityAnnouncementsAnalytics
+Contact us
+Get started with AnalyticsIntroduction to AnalyticsSet up AnalyticsGuides and videosTroubleshootGlossaryCollect and manage dataEvents and key eventsImport data from external systemsIntegrationsMeasure ecommerceMeasure lead generationFirst-party dataTroubleshoot data issuesReport and exploreReportsExplorationsDimensions and metricsAnalytics IntelligenceThe Analytics appHow data is stored and displayedAdvertising and attributionUnderstand advertisingUnderstand attributionManage and configure attributioniOS conversion measurementAudiences and remarketingSet up audiencesUse audiences for advertising and remarketing Audiences for common marketing objectivesTroubleshoot audiencesManage accounts, properties, and users[GA4] SubpropertiesRoll-up propertiesGoogle Analytics 360[GA4] SubpropertiesRoll-up propertiesHow data is stored and displayedPolicies and data privacyData privacy and securityAbout conversionsAbout key events
+About key eventsGain insights into the actions that are most important to your business and use that data to enhance your marketing effortsWhat is a key event?
+A key event is an event that measures an action that's particularly important to the success of your business. When someone triggers the event by performing the action, the key event is recorded in Google Analytics and surfaced in your Google Analytics reports.
+Any event you collect can become a key event. To measure a key event, create or identify an event that measures the action and then mark the event as a key event. After you mark the event as a key event, you can see how many users perform the action and evaluate marketing performance across all channels that lead users to perform the action.
+The following flow shows how to mark an event as a key event. In short, if an event is important to your business's success, you can mark the event as a key event in Analytics.
+Event → Key Event
+Report on key events
+You can use Google Analytics reports and explorations to count the number of times users trigger key events and attribute credit to different touchpoints along a user's path to triggering key events.
+View key event counts
+Many Google Analytics reports, such as the Landing pages and User acquisition reports, include a Key events column. The Key events column displays the number of times users triggered key events on your website or app, separated out by the dimension values on the left.
+To narrow down the counts by a specific key event, you can select the All events menu and choose a specific key event so you can view the number of times users triggered the key event.
+To further investigate key event counts separated out by any compatible dimensions, you can build your own explorations using key event metrics like Key events and Session key event rate.
+Attribute credit to touchpoints
+In the Advertising section, you can use the Pathing and Attribution reports to attribute credit to different touchpoints along a user's path to triggering key events and see how different attribution models distribute credit differently to those touchpoints. Learn more about advertising reports
+Create conversions with Google Analytics key events
+You can create a conversion in Google Ads from a Google Analytics key event and manage its settings through the Google Ads and Google Analytics interface. This provides a consistent way of measuring important actions and reduces the risk of data discrepancies between Google Ads and Google Analytics.
+By creating Google Ads conversions based on the Google Analyics events, you can:
+Report on the same conversion counts between Google Ads and Analytics
+Report on non-Google and organic channels, including channels that are part of the same cross-channel campaign
+Bid against the conversions in your ad campaigns
+Build audiences for re-marketing purposes
+You can evaluate the performance of your Google Ads conversions in either Google Ads or in the "Advertising" section of Google Analytics. Google Ads conversions don’t appear in standard Google Analytics reports.
+Learn how to create a Google Ads conversion
+Was this helpful?How can we improve it?Submit
+Need more help? Try these next steps:
+Post to the help community
+Get answers from community members
+Contact us Tell us more and we’ll help you get there
+false
+About conversions1 of 5About key events2 of 5How app key events are attributed3 of 5[GA4] About modeled key events4 of 5Change the counting method of key events5 of 5About default key event value
+©2026 Google
+Privacy Policy
+Terms of Service
+Language
+català‎dansk‎Deutsch‎español‎español (Latinoamérica)‎Filipino‎français‎hrvatski‎Indonesia‎italiano‎latviešu‎lietuvių‎magyar‎Nederlands‎norsk‎polski‎português‎português (Brasil)‎română‎slovenčina‎slovenščina‎suomi‎svenska‎Tiếng Việt‎Türkçe‎čeština‎Ελληνικά‎български‎русский‎српски‎українська‎‏עברית‏العربيةहिन्दी‎ไทย‎中文（简体）‎中文（繁體）‎日本語‎한국어‎ English‎
+Enable Dark Mode
+Send feedback on... This help content & information General Help Center experience
+SearchClear searchClose searchGoogle appsMain menu
+7915684517790788228
+true
+Search Help Center false
+true
+true
+true
+true true 69256
+false
+false
+false false
+false

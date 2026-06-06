@@ -1,0 +1,64 @@
+Overview of Google Analytics reports - Analytics Help
+Skip to main content
+Analytics HelpSign inGoogle HelpHelp CenterGet started with AnalyticsCollect and manage dataReport and exploreAdvertising and attributionAudiences and remarketingManage accounts, properties, and usersGoogle Analytics 360Policies and data privacyCommunityAnalyticsPrivacy PolicyTerms of ServiceSubmit feedback Send feedback on...This help content & informationGeneral Help Center experienceNextHelp CenterCommunityAnnouncementsAnalytics
+Contact us
+Get started with AnalyticsIntroduction to AnalyticsSet up AnalyticsGuides and videosTroubleshootGlossaryCollect and manage dataEvents and key eventsImport data from external systemsIntegrationsMeasure ecommerceMeasure lead generationFirst-party dataTroubleshoot data issuesReport and exploreReportsExplorationsDimensions and metricsAnalytics IntelligenceThe Analytics appHow data is stored and displayedAdvertising and attributionUnderstand advertisingUnderstand attributionManage and configure attributioniOS conversion measurementAudiences and remarketingSet up audiencesUse audiences for advertising and remarketing Audiences for common marketing objectivesTroubleshoot audiencesManage accounts, properties, and users[GA4] SubpropertiesRoll-up propertiesGoogle Analytics 360[GA4] SubpropertiesRoll-up propertiesHow data is stored and displayedPolicies and data privacyData privacy and securityReportsOverview of Google Analytics reports
+ReportsOverview of Google Analytics reportsNext: [GA4] About overview reportsGoogle Analytics collects data from your websites and apps to create reports that provide insights into your business. You can use reports to monitor traffic, investigate data, and understand your users and their activity.
+Download this comprehensive guide on reporting in Google Analytics.
+Once Analytics starts to receive data, the data appears in the Realtime report and then in your other reports shortly after. Some of the data in your reports is collected from your websites and apps once you set up Google Analytics, while other data requires some additional setup.
+You can find all your reports by clicking Reports
+on the left.
+Watch a video about Google Analytics reports
+Get started
+When you open your reports, you will see a Reports snapshot report, a Realtime report, and a number of predefined reports. Everyone with access to your Google Analytics will see the same set of reports on the left.
+Google Analytics provides two types of reports:
+Overview reports: These reports summarize data about a topic; for example, see how much you're making across ecommerce purchases, in-app purchases, and mobile ads.
+Detail reports: These reports provide more in-depth information about an area of interest; for example, see in-depth data about ecommerce purchases.
+You can gather valuable ecommerce data directly within Google Analytics reports. Learn more about Ecommerce in Google Analytics.
+Report collections
+The set of reports below the Reports snapshot and Realtime reports on the left are called report collections. You will see some of the following report collections based on information you provide during setup. You can customize the report collections to include any report.
+Report collection
+What it is
+Appears automatically when...
+App developer
+Summarizes key metrics about the apps you connect to Firebase, including data about your users and their behavior
+you add the Google Analytics for Firebase SDK to your connected mobile app
+Business objectives
+Provides a tailored set of reports based on information you provide about your business when you first set up Google Analytics
+you selected a business objective during setup that wasn't the "Get baseline reports" option
+Games reporting
+Provides game-specific information to help you measure customer behavior across the user funnel and develop metric-driven insights about your mobile gaming apps
+you have at least one app data stream associated with a games app in the Google Play Store or Apple App Store, or the industry category in your Property Settings is set to "Games"
+Life cycle
+Helps you understand each stage in the customer journey — from acquisition to retention
+you selected "Get baseline reports" during setup, you created the property before March 27, 2023, or you migrated from a Universal Analytics property using Setup Assistant
+User
+Helps you understand the people who use your websites and apps, such as their ages, interests, devices, and app versions
+All Google Analytics properties start with this collection by default.
+Next: [GA4] About overview reports
+Was this helpful?How can we improve it?Submit
+Need more help? Try these next steps:
+Post to the help community
+Get answers from community members
+Contact us Tell us more and we’ll help you get there
+false
+Reports1 of 16Overview of Google Analytics reports2 of 16Manage overview reports1 of 4[GA4] About overview reports2 of 4Customize overview reports and "Reports snapshot"3 of 4[GA4] Create an overview report4 of 4[GA4] Create a summary card3 of 16Manage detail reports1 of 9[GA4] About detail reports2 of 9[GA4] Create a detail report3 of 9[GA4] Apply filters to detail reports4 of 9[GA4] Change dimensions in detail reports5 of 9[GA4] Customize dimensions in detail reports6 of 9[GA4] Customize metrics in details reports7 of 9[GA4] Customize charts in detail reports8 of 9[GA4] Customize detail reports9 of 9[GA4] Plot rows in line charts4 of 16Apply comparisons to reports5 of 16Change and compare date ranges in reports6 of 16[GA4] Share & export reports7 of 16[GA4] Copy reports and explorations across Google Analytics properties8 of 16[GA4] Schedule reports9 of 16Send reports by email10 of 16Create a custom funnel report11 of 16[GA4] Keyboard shortcuts12 of 16Pre-made reports1 of 35[GA4] Audiences report2 of 35[GA4] Checkout journey report3 of 35[GA4] Demographic details report4 of 35[GA4] Ecommerce purchases report5 of 35[GA4] Landing page report6 of 35[GA4] Manual report7 of 35[GA4] Order coupons report8 of 35[GA4] Pages and screens report9 of 35[GA4] Queries report10 of 35[GA4] Realtime pages report11 of 35[GA4] Realtime report12 of 35[GA4] Retention overview report13 of 35[GA4] Tech overview report14 of 35[GA4] Traffic acquisition report15 of 35[GA4] User attributes overview report16 of 35Acquisition overview report17 of 35Campaign Manager 360 report18 of 35Display & Video 360 report19 of 35Engagement overview report20 of 35Events report21 of 35Firebase overview report22 of 35Google Ads campaigns report23 of 35Google organic search traffic report24 of 35In-app purchases report25 of 35Latest releases report26 of 35Lead acquisition report27 of 35Lead disqualification and loss report28 of 35Monetization overview report29 of 35Promotions report30 of 35Publisher ads report31 of 35Purchase journey report32 of 35Search Ads 360 report33 of 35Tech details report34 of 35User acquisition report35 of 35User acquisition report vs. Traffic acquisition report13 of 16Report collections1 of 7[GA4] Customize report navigation2 of 7[GA4] App developer collection3 of 7[GA4] Business objectives collection4 of 7[GA4] Games reporting collection5 of 7[GA4] Life cycle collection6 of 7[GA4] User collection7 of 7Assign users to report collections for Google Analytics 36014 of 16Thresholds and limits1 of 6[GA4] Data freshness2 of 6[GA4] About data thresholds3 of 6[GA4] Data compatibility4 of 6[GA4] Configuration limits5 of 6[GA4] Data freshness and Service Level Agreement constraints6 of 6How data is stored and displayed15 of 16Troubleshoot reports1 of 2Fix missing revenue data2 of 2What the value (not set) means in your reports16 of 16About annotations
+©2026 Google
+Privacy Policy
+Terms of Service
+Language
+català‎dansk‎Deutsch‎español‎español (Latinoamérica)‎Filipino‎français‎hrvatski‎Indonesia‎italiano‎latviešu‎lietuvių‎magyar‎Nederlands‎norsk‎polski‎português‎português (Brasil)‎română‎slovenčina‎slovenščina‎suomi‎svenska‎Tiếng Việt‎Türkçe‎čeština‎Ελληνικά‎български‎русский‎српски‎українська‎‏עברית‏العربيةहिन्दी‎ไทย‎中文（简体）‎中文（繁體）‎日本語‎한국어‎ English‎
+Enable Dark Mode
+Send feedback on... This help content & information General Help Center experience
+SearchClear searchClose searchGoogle appsMain menu
+12265454778591465004
+true
+Search Help Center false
+true
+true
+true
+true true 69256
+false
+false
+false false
+false

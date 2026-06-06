@@ -1,0 +1,268 @@
+Default channel group - Analytics Help
+Skip to main content
+Analytics HelpSign inGoogle HelpHelp CenterGet started with AnalyticsCollect and manage dataReport and exploreAdvertising and attributionAudiences and remarketingManage accounts, properties, and usersGoogle Analytics 360Policies and data privacyCommunityAnalyticsPrivacy PolicyTerms of ServiceSubmit feedback Send feedback on...This help content & informationGeneral Help Center experienceNextHelp CenterCommunityAnnouncementsAnalytics
+Contact us
+Get started with AnalyticsIntroduction to AnalyticsSet up AnalyticsGuides and videosTroubleshootGlossaryCollect and manage dataEvents and key eventsImport data from external systemsIntegrationsMeasure ecommerceMeasure lead generationFirst-party dataTroubleshoot data issuesReport and exploreReportsExplorationsDimensions and metricsAnalytics IntelligenceThe Analytics appHow data is stored and displayedAdvertising and attributionUnderstand advertisingUnderstand attributionManage and configure attributioniOS conversion measurementAudiences and remarketingSet up audiencesUse audiences for advertising and remarketing Audiences for common marketing objectivesTroubleshoot audiencesManage accounts, properties, and users[GA4] SubpropertiesRoll-up propertiesGoogle Analytics 360[GA4] SubpropertiesRoll-up propertiesHow data is stored and displayedPolicies and data privacyData privacy and securityDimensions and metricsTraffic-source dimensionsDefault channel group
+Traffic-source dimensionsDefault channel groupLearn how Analytics classifies your traffic.Next: Custom channel groups
+This article covers Default channel groups in Google Analytics properties.
+Default channel groups can't be edited in Google Analytics. You have the option to create custom channel groups, which let you create your own rule-based categories of web-traffic sources.
+We recently made improvements to default channel grouping for Google Analytics properties. Learn more
+Channels are rule-based definitions of your website's traffic sources that let you monitor the performance of all of the channels sending traffic to your website. You can find descriptions and definitions of the channels in the tables below.
+You can see the default channels as values for the following dimensions:
+Dimension
+Definition
+Attribution model
+Scope
+Default channel group
+The channels by which users arrived at your site/app and triggered a key event.
+Attribution model set for the property.
+Default is data-driven attribution model
+Event
+Session default channel group
+The channels by which users arrived at your site/app when they initiated new sessions
+Paid and organic channels last click
+Session
+First user default channel group
+The channels by which users first arrived at your site/app
+Paid and organic channels last click
+User
+You can see the dimensions listed above in the Acquisition reports, the Advertising section, and if you include them in custom reports.
+Default channel descriptions
+Channel
+Description
+Affiliates
+Affiliates is the channel by which users arrive at your site/app via links on affiliate sites.
+AI Assistants
+AI Assistants is the channel by which users arrive at your site from sources like ChatGPT, Gemini, Deepseek, Copilot, or Grok. It excludes Google’s AI Overviews and AI Mode.
+Audio
+Audio is the channel by which users arrive at your site/app via ads on audio platforms (e.g., podcast platforms).
+Cross-network
+Cross-network is the channel by which users arrive at your site/app via ads that appear on a variety of networks (e.g., Search and Display).
+Direct
+Direct is the channel by which users arrive at your site/app via a saved link or by entering your URL.
+Display
+Display is the channel by which users arrive at your site/app via display ads, including ads on the Google Display Network.
+Email
+Email is the channel by which users arrive at your site/app via links in email.
+Mobile Push Notifications
+Mobile Push Notifications is the channel by which users arrive at your site/app via links in mobile-device messages when they're not actively using the app.
+Organic Search
+Organic Search is the channel by which users arrive at your site/app via non-ad links in organic-search results, including Google’s AI Overviews and AI Mode.
+Organic Shopping
+Organic Shopping is the channel by which users arrive at your site/app via non-ad links on shopping sites like Amazon or ebay.
+Organic Social
+Organic Social is the channel by which users arrive at your site/app via non-ad links on social sites like Facebook or Twitter.
+Organic Video
+Organic Video is the channel by which users arrive at your site/app via non-ad links on video sites like YouTube, TikTok, or Vimeo.
+Paid Other
+Paid Other is the channel by which users arrive at your site/app via ads, but not through an ad identified as Search, Social, Shopping, or Video.
+Paid Search
+Paid Search is the channel by which users arrive at your site/app via ads on search-engine sites like Bing, Baidu, or Google.
+Paid Shopping
+Paid Shopping is the channel by which users arrive at your site/app via paid ads on shopping sites like Amazon or ebay or on individual retailer sites.
+Paid Social
+Paid Social is the channel by which users arrive at your site/app via ads on social sites like Facebook and Twitter.
+Paid Video
+Paid Video is the channel by which users arrive at your site/app via ads on video sites like TikTok, Vimeo, and YouTube.
+Referral
+Referral is the channel by which users arrive at your site via non-ad links on other sites/apps (e.g., blogs, news sites).
+SMS
+SMS is the channel by which users arrive at your site/app via links from text messages.
+Default channel definitions
+These definitions reflect Analytics' current view of what constitutes each channel. The following definitions are provided for your reference and may evolve as the market changes.
+Channel definitions aren't case sensitive and can't be edited.
+Note: In the absence of the Google Ads ad network type, default channel groups are evaluated using campaign type.
+Channel
+Analytics definition
+Channels for Google Ads traffic
+The channels for Google Ads traffic are determined using source platform, ad network type, and campaign type. Ad network type is used to evaluate most of the traffic, while campaign type is specifically used for Paid Shopping only.
+For traffic identified with the GBRAID parameter, channels are evaluated using campaign type.
+Paid Shopping
+Source platform is "Google Ads"
+AND
+Google Ads campaign type is "Shopping"
+Paid Search
+Source platform is "Google Ads"
+AND
+Google Ads ad network type is one of ("Google Search", "Google Partners")
+OR
+Google Ads campaign type is one of ("Search", "Hotel", "Travel")
+Paid Video
+Source platform is "Google Ads"
+AND
+Google Ads ad network type is one of ("YouTube")
+OR
+Google Ads campaign type is "Video"
+Display
+Source platform is "Google Ads"
+AND
+Google Ads ad network type is one of ("Google Display Network", "Google TV")
+OR
+Google Ads campaign type is "Display"
+Cross-network
+Source platform is "Google Ads"
+AND
+Google Ads ad network type is one of ("Cross-network", "Google owned channels")
+Cross-network includes Demand Gen, Performance Max and Smart Shopping.
+OR
+Google Ads campaign type is one of ("Performance Max", "App", "Smart", "Demand Gen", "Local")
+Paid Social
+Source platform is "Google Ads"
+AND
+Google Ads ad network type is one of ("Social")
+OR
+Google Ads campaign type is "Social"
+Channels for Display & Video 360 traffic
+Display
+Source platform is "DV360"
+AND
+DV360 creative format is one of (“Standard", "Expandable", "Native site square", "Backdrop", "Templated app install interstitial", "Deprecated","Native app install", "Native app install square", "Native site", "Templated app install", "Lightbox”)
+Paid Video
+Source platform is "DV360"
+AND
+DV360 creative format is one of ("Native video", "Video", "Templated app install video", "Flipbook")
+Audio
+Source platform is "DV360"
+AND
+DV360 creative format is one of ("Audio")
+Paid Other
+Source platform is "DV360"
+AND
+DV360 creative format is one of ("Publisher hosted", "Tracking", "Unknown")
+Channels for Campaign Manager 360 traffic via Floodlight integration
+Display
+Source platform is "CM360"
+AND
+CM360 creative format is one of ("Display redirect", "Custom display", "Custom display interstitial", "Rich Media display banner", "Display", "Internal Redirect", "Interstitial internal redirect", "Flash in-page", "HTML5 Banner", "Rich Media display banner with floating", "Rich Media IM expand", "Rich Media display expanding", "Rich Media mobile in-app", "Rich Media display interstitial", "Rich Media display multi-floating interstitial", "Rich Media peel-down", "Display image gallery", "Image")
+Paid Video
+Source platform is "CM360"
+AND
+CM360 creative format is one of ("In-Stream Video", "Streaming Real", "Streaming Windows", "Streaming Flash", "In-Stream Tracking", "Streaming Silverlight", "Video Redirect", "VPAID linear video", "VPAID non-linear video")
+Audio
+Source platform is "CM360"
+AND
+CM360 creative format is one of ("In-Stream Audio", "Audio Redirect")
+Paid Other
+Source platform is "CM360"
+AND
+CM360 creative format is one of ("Tracking", "Tracking Image", "Tracking HTML")
+Channels for Search Ads 360 traffic
+(The following are channels for non Google Ads traffic; the channels for Google Ads traffic are the same as those listed at the beginning of this table under "Channels for Google Ads traffic")
+Paid Search
+Source platform is "SA360"
+AND
+SA360 engine account type is one of ("bing", "yahoo gemini", "yahoo.jp", "baidu", "admarketplace", "naver", "360.cn", "yandex")
+Paid Social
+Source platform is "SA360"
+AND
+SA360 engine account type Is one of ("facebook", "twitter")
+Channels for Merchant Center traffic
+Organic Shopping
+Source platform is "Shopping Free Listings"
+Channels for manual traffic
+(See Analytics' list of sources and categories)
+Direct
+Source exactly matches "(direct)"
+AND
+Medium is one of ("(not set)", "(none)")
+Cross-network
+Campaign Name contains "cross-network"
+Cross-network includes Demand Gen, Performance Max and Smart Shopping.
+Paid Shopping
+Source matches a list of shopping sites
+OR
+Campaign Name matches regex ^(.*(([^a-df-z]|^)shop|shopping).*)$
+AND
+Medium matches regex ^(.*cp.*|ppc|retargeting|paid.*)$
+Paid Search
+Source matches a list of search sites
+AND
+Medium matches regex ^(.*cp.*|ppc|retargeting|paid.*)$
+Paid Social
+Source matches a regex list of social sites
+AND
+Medium matches regex ^(.*cp.*|ppc|retargeting|paid.*)$
+Paid Video
+Source matches a list of video sites
+AND
+Medium matches regex ^(.*cp.*|ppc|retargeting|paid.*)$
+Display
+Medium is one of (“display”, “banner”, “expandable”, “interstitial”, “cpm”)
+Paid Other
+Medium matches regex ^(.*cp.*|ppc|retargeting|paid.*)$
+Organic Shopping
+Source matches a list of shopping sites
+OR
+Campaign name matches regex ^(.*(([^a-df-z]|^)shop|shopping).*)$
+Organic Social
+Source matches a regex list of social sites
+OR
+Medium is one of (“social”, “social-network”, “social-media”, “sm”, “social network”, “social media”)
+Organic Video
+Source matches a list of video sites
+OR
+Medium matches regex ^(.*video.*)$
+Organic Search
+Source matches a list of search sites listed under "SOURCE_CATEGORY_SEARCH"
+OR
+Medium exactly matches organic
+AI Assistant
+The medium exactly matches “ai-assistant”.
+The medium is set to “ai-assistant” and the campaign is set to “(ai-assistant)” if the referrer matches a list of AI Assistants.
+Referral
+Medium is one of ("referral", "app", or "link")
+Email
+Source = email|e-mail|e_mail|e mail
+OR
+Medium = email|e-mail|e_mail|e mail
+Affiliates
+Medium = affiliate
+Audio
+Medium exactly matches audio
+SMS
+Source exactly matches sms
+OR
+Medium exactly matches sms
+Mobile Push Notifications
+Medium ends with "push"
+OR
+Medium contains "mobile" or "notification"
+OR
+Source exactly matches "firebase"
+Unassigned is the value Analytics uses when there are no other channel rules that match the event data.
+(other) is the value Analytics uses for an aggregated row due to cardinality limits. Learn more
+You may see inconsistent data from Analytics integrations for default channel groups if your reports or explorations include dates prior to June 15, 2022. For example, a channel that should be identified as Organic Shopping can be misidentified as Organic Search. Data from June 15, 2022 and later is not subject to this type of inconsistency. You can accurately identify the data from each integration by using the source platform dimension.
+Editing the default channel group
+It's not possible to edit the Google Analytics default channel group because Google maintains a universal default for all users that can be kept current, accurate, and serve as a reference for the life of every property.
+You can edit the primary channel group at any time, which serves as your property's editable default channel group.
+Learn How to enable the primary channel group.
+Analytics' list of sources and categories
+Download a spreadsheet of GA4 default-channel-group sources and categories
+If you would like us to add your search, social, video, or shopping site to the list or if you would like to make a change to your current listing, contact us at googleanalytics-channelgrouprequests@google.com. Google Analytics reviews these requests at least once per year and often more frequently. Inclusion is based on Google’s assessment of a number of factors including but not limited to whether a significant volume of traffic is sourced from a given search engine, social site, or shopping site.
+Next: Custom channel groups
+Was this helpful?How can we improve it?Submit
+Need more help? Try these next steps:
+Post to the help community
+Get answers from community members
+Contact us Tell us more and we’ll help you get there
+false
+Traffic-source dimensions1 of 9About traffic-source dimensions2 of 9Traffic-source dimensions, manual tagging, and auto-tagging3 of 9Scopes of traffic-source dimensions4 of 9Campaigns and traffic sources5 of 9Default channel group6 of 9Custom channel groups7 of 9[GA4] Understand (direct) / (none) traffic8 of 9Traffic-source dimensions9 of 9About aggregate identifiers
+©2026 Google
+Privacy Policy
+Terms of Service
+Language
+català‎dansk‎Deutsch‎español‎español (Latinoamérica)‎Filipino‎français‎hrvatski‎Indonesia‎italiano‎latviešu‎lietuvių‎magyar‎Nederlands‎norsk‎polski‎português‎português (Brasil)‎română‎slovenčina‎slovenščina‎suomi‎svenska‎Tiếng Việt‎Türkçe‎čeština‎Ελληνικά‎български‎русский‎српски‎українська‎‏עברית‏العربيةहिन्दी‎ไทย‎中文（简体）‎中文（繁體）‎日本語‎한국어‎ English‎
+Enable Dark Mode
+Send feedback on... This help content & information General Help Center experience
+SearchClear searchClose searchGoogle appsMain menu
+6028322312102427151
+true
+Search Help Center false
+true
+true
+true
+true true 69256
+false
+false
+false false
+false

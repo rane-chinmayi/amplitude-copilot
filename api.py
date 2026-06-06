@@ -23,15 +23,42 @@ if not api_key:
 # Initialize Gemini client
 client = genai.Client(api_key=api_key)
 
-# Load RAG resources
-print("Loading chunks.json...")
-with open("chunks.json", "r", encoding="utf-8") as f:
-    chunks = json.load(f)
+# ===== TOOL DEFINITIONS =====
+TOOLS = {
+    'amplitude': {
+        'chunks_file': 'chunks.json',
+        'index_file': 'amplitude_index.faiss',
+        'embeddings_file': 'embeddings.npy',
+        'name': 'Amplitude',
+        'docs_url': 'https://amplitude.com/docs'
+    },
+    'mixpanel': {
+        'chunks_file': 'chunks_mixpanel.json',
+        'index_file': 'amplitude_index_mixpanel.faiss',
+        'embeddings_file': 'embeddings_mixpanel.npy',
+        'name': 'Mixpanel',
+        'docs_url': 'https://docs.mixpanel.com'
+    },
+    'google_analytics': {
+        'chunks_file': 'chunks_ga.json',
+        'index_file': 'amplitude_index_ga.faiss',
+        'embeddings_file': 'embeddings_ga.npy',
+        'name': 'Google Analytics',
+        'docs_url': 'https://support.google.com/analytics'
+    }
+}
 
-print("Loading amplitude_index.faiss...")
-index = faiss.read_index("amplitude_index.faiss")
+# Load all tools at startup
+tool_data = {}
+for tool_key, tool_config in TOOLS.items():
+    print(f"Loading {tool_config['name']} resources...")
+    with open(tool_config['chunks_file'], 'r', encoding='utf-8') as f:
+        tool_chunks = json.load(f)
+    tool_index = faiss.read_index(tool_config['index_file'])
+    tool_data[tool_key] = {'chunks': tool_chunks, 'index': tool_index}
+    print(f"  ✓ {len(tool_chunks)} chunks, index loaded")
 
-print("Resources loaded successfully.")
+print("All resources loaded successfully.")
 
 # ===== REQUEST/RESPONSE MODELS =====
 class AskRequest(BaseModel):
@@ -88,6 +115,7 @@ app.add_middleware(
 
 # ===== SOURCE URL MAP =====
 SOURCE_URL_MAP = {
+    # Amplitude
     'docs_analytics_charts_funnel-analysis.txt': 'https://amplitude.com/docs/analytics/charts/funnel-analysis',
     'docs_analytics_charts_event-segmentation.txt': 'https://amplitude.com/docs/analytics/charts/event-segmentation',
     'docs_analytics_charts_retention-analysis.txt': 'https://amplitude.com/docs/analytics/charts/retention-analysis',
@@ -104,6 +132,22 @@ SOURCE_URL_MAP = {
     'docs_analytics_charts_journeys_journeys-understand-paths.txt': 'https://amplitude.com/docs/analytics/charts/journeys/journeys-understand-paths',
     'docs_analytics_charts_journeys_journeys-understand-visualizations.txt': 'https://amplitude.com/docs/analytics/charts/journeys/journeys-understand-visualizations',
     'docs_analytics_charts_event-segmentation_event-segmentation-build.txt': 'https://amplitude.com/docs/analytics/charts/event-segmentation/event-segmentation-build',
+    # Mixpanel
+    'docs_analysis_reports_funnels.txt': 'https://docs.mixpanel.com/docs/analysis/reports/funnels',
+    'docs_analysis_reports_retention.txt': 'https://docs.mixpanel.com/docs/analysis/reports/retention',
+    'docs_analysis_reports_insights.txt': 'https://docs.mixpanel.com/docs/analysis/reports/insights',
+    'docs_analysis_reports_flows.txt': 'https://docs.mixpanel.com/docs/analysis/reports/flows',
+    'docs_features_custom-events.txt': 'https://docs.mixpanel.com/docs/features/custom-events',
+    'docs_analysis_users.txt': 'https://docs.mixpanel.com/docs/analysis/users',
+    'docs_users_cohorts.txt': 'https://docs.mixpanel.com/docs/users/cohorts',
+    # Google Analytics
+    'analytics_answer_9304153.txt': 'https://support.google.com/analytics/answer/9304153',
+    'analytics_answer_9143382.txt': 'https://support.google.com/analytics/answer/9143382',
+    'analytics_answer_9212670.txt': 'https://support.google.com/analytics/answer/9212670',
+    'analytics_answer_11986666.txt': 'https://support.google.com/analytics/answer/11986666',
+    'analytics_answer_9267568.txt': 'https://support.google.com/analytics/answer/9267568',
+    'analytics_answer_9756891.txt': 'https://support.google.com/analytics/answer/9756891',
+    'analytics_answer_9356048.txt': 'https://support.google.com/analytics/answer/9356048',
 }
 
 # ===== RETRY MECHANISM =====
@@ -159,8 +203,14 @@ def get_confidence(distance):
         return "Low"
 
 
-def get_answer(query: str, model: str = 'gemini-2.5-flash'):
-    """Generate an answer using RAG pipeline"""
+def get_answer(query: str, model: str = 'gemini-2.5-flash', tool: str = 'amplitude'):
+    """Generate an answer using RAG pipeline for the specified tool"""
+
+    # Get the correct chunks, index, and config for the selected tool
+    data = tool_data.get(tool, tool_data['amplitude'])
+    chunks = data['chunks']
+    index = data['index']
+    tool_config = TOOLS.get(tool, TOOLS['amplitude'])
 
     # Embed the query
     response = client.models.embed_content(
@@ -174,7 +224,7 @@ def get_answer(query: str, model: str = 'gemini-2.5-flash'):
     distances, indices = index.search(query_embedding, 3)
 
     # Build context from retrieved chunks
-    context = "Amplitude Documentation:\n\n"
+    context = ""
     top_source = None
     top_distance = None
 
@@ -185,28 +235,32 @@ def get_answer(query: str, model: str = 'gemini-2.5-flash'):
             top_source = chunk['source']
             top_distance = distances[0][i]
 
+    print(f"Tool: {tool}")
+    print(f"Number of chunks available: {len(chunks)}")
+    print(f"Top chunk indices: {indices[0]}")
+    print(f"Context preview (first 500 chars): {context[:500]}")
+
     # Build the prompt for Gemini
-    system_prompt = """You are an expert Amplitude analytics assistant. Answer questions based ONLY on the provided Amplitude documentation.
+    prompt = f"""You are a helpful {tool_config['name']} product assistant.
+Answer the user's question using ONLY the documentation provided below.
+Be concise, practical and specific.
+If the answer is genuinely not in the documentation below, say exactly: "I couldn't find this in the {tool_config['name']} documentation. Try searching {tool_config['docs_url']} directly."
+Do NOT say you couldn't find it if the answer IS in the documentation.
 
-Instructions:
-- Answer only using information from the provided documentation
-- Keep answers concise and practical
-- If the answer isn't in the provided documentation, respond with: "I couldn't find this in the Amplitude documentation. Try searching docs.amplitude.com directly."
-- Provide actionable and clear answers"""
-
-    user_prompt = f"""{system_prompt}
-
+Documentation:
 {context}
 
-User Question: {query}
+Question: {query}
 
-Please answer based on the documentation above."""
+Answer:"""
+
+    print(f"Prompt preview (first 300 chars): {prompt[:300]}")
 
     # Generate answer with Gemini
-    response, model_used = generate_with_retry(user_prompt, model=model)
+    response, model_used = generate_with_retry(prompt, model=model)
 
     answer = response.text
-    source_url = SOURCE_URL_MAP.get(top_source, 'https://amplitude.com/docs')
+    source_url = SOURCE_URL_MAP.get(top_source, tool_config['docs_url'])
 
     return {
         "answer": answer,
@@ -334,15 +388,18 @@ async def ask(request: dict):
     """
     query = request.get("query", "")
     model = request.get("model", "gemini-2.5-flash")
-    print(f"Received request - Query: {query}, Model: {model}")
+    tool = request.get("tool", "amplitude")
+    print(f"Received request - Query: {query}, Model: {model}, Tool: {tool}")
+
+    tool_config = TOOLS.get(tool, TOOLS['amplitude'])
 
     try:
-        # Cache key includes model so different models don't share results
-        cache_key = f"{query}::{model}"
+        # Cache key includes model and tool so results are fully isolated
+        cache_key = f"{query}::{model}::{tool}"
         if cache_key in answer_cache:
             return answer_cache[cache_key]
 
-        result = get_answer(query, model=model)
+        result = get_answer(query, model=model, tool=tool)
         confidence = get_confidence(result["distance"])
 
         response = AskResponse(
@@ -361,7 +418,7 @@ async def ask(request: dict):
         return AskResponse(
             answer=f"Error: {str(e)}",
             source="",
-            source_url="https://amplitude.com/docs",
+            source_url=tool_config['docs_url'],
             confidence="Low",
             distance=1.0,
             model_used=model
@@ -437,7 +494,7 @@ Example format: ["Question 1?", "Question 2?", "Question 3?"]
 
 Return only the JSON array, no explanation, no markdown, no backticks."""
 
-        response = generate_with_retry(prompt, model=model)
+        response, _ = generate_with_retry(prompt, model=model)
 
         text = response.text.strip()
         # Remove markdown backticks if present
@@ -453,6 +510,16 @@ Return only the JSON array, no explanation, no markdown, no backticks."""
     except Exception as e:
         print(f"Related questions error: {e}")
         return {"questions": default_questions}
+
+
+@app.get("/tools")
+async def get_tools():
+    """Return the list of available documentation tools."""
+    return {"tools": [
+        {"key": "amplitude", "name": "Amplitude", "icon": "📊"},
+        {"key": "mixpanel", "name": "Mixpanel", "icon": "🔥"},
+        {"key": "google_analytics", "name": "Google Analytics", "icon": "📈"}
+    ]}
 
 
 # ===== RUN SERVER =====
