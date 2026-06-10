@@ -1,13 +1,14 @@
 import json
 import os
 import time
+from collections import Counter
 import numpy as np
 import faiss
 from google import genai
 from dotenv import load_dotenv
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
-from datetime import datetime
+from datetime import datetime, timedelta
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -89,6 +90,11 @@ class AnalyticsResponse(BaseModel):
     negative: int
     deflection_rate: float
     recent: list
+    tool_breakdown: list = []
+    daily_trend: list = []
+    top_questions: list = []
+    tool_deflection: list = []
+    confidence_breakdown: list = []
 
 class RelatedRequest(BaseModel):
     query: str
@@ -303,6 +309,44 @@ def log_feedback(query: str, answer: str, feedback: str) -> bool:
         return False
 
 
+def detect_tool_from_query(query: str) -> str:
+    """Best-effort tool detection from query text when no 'tool' column exists in the sheet."""
+    q = (query or '').lower()
+    if 'mixpanel' in q:
+        return 'Mixpanel'
+    if 'google analytics' in q or 'ga4' in q or ' ga ' in q:
+        return 'Google Analytics'
+    return 'Amplitude'
+
+
+def detect_confidence_from_record(record: dict) -> str:
+    """Best-effort confidence bucket when no 'confidence' column exists in the sheet."""
+    confidence = str(record.get('confidence', '')).strip()
+    if confidence in ('High', 'Medium', 'Low'):
+        return confidence
+    # Fall back to feedback as a proxy for confidence
+    feedback = record.get('feedback', '')
+    if feedback == 'positive':
+        return 'High'
+    elif feedback == 'negative':
+        return 'Low'
+    return 'Medium'
+
+
+EMPTY_ANALYTICS = {
+    "total": 0,
+    "positive": 0,
+    "negative": 0,
+    "deflection_rate": 0.0,
+    "recent": [],
+    "tool_breakdown": [],
+    "daily_trend": [],
+    "top_questions": [],
+    "tool_deflection": [],
+    "confidence_breakdown": []
+}
+
+
 def load_analytics_data() -> dict:
     """Load analytics data from Google Sheets"""
     try:
@@ -317,13 +361,7 @@ def load_analytics_data() -> dict:
         # Production: would need to load from environment
         else:
             print("Warning: creds.json not found. Analytics not available.")
-            return {
-                "total": 0,
-                "positive": 0,
-                "negative": 0,
-                "deflection_rate": 0.0,
-                "recent": []
-            }
+            return dict(EMPTY_ANALYTICS)
 
         client_gs = gspread.authorize(creds)
 
@@ -346,25 +384,130 @@ def load_analytics_data() -> dict:
                 "feedback": record.get('feedback', '')
             })
 
+        # ----- Tool breakdown & deflection rate per tool -----
+        tool_counts = Counter()
+        tool_positive_counts = Counter()
+        for record in records:
+            tool = record.get('tool') or detect_tool_from_query(record.get('query', ''))
+            tool_counts[tool] += 1
+            if record.get('feedback') == 'positive':
+                tool_positive_counts[tool] += 1
+
+        tool_breakdown = [
+            {"tool": tool, "queries": count}
+            for tool, count in tool_counts.items()
+        ]
+
+        tool_deflection = [
+            {
+                "tool": tool,
+                "rate": round((tool_positive_counts[tool] / count * 100), 1) if count > 0 else 0.0
+            }
+            for tool, count in tool_counts.items()
+        ]
+
+        # ----- Daily trend (group by date, first 10 chars of timestamp) -----
+        date_counts = Counter()
+        for record in records:
+            timestamp = record.get('Timestamp', record.get('timestamp', ''))
+            date = str(timestamp)[:10] if timestamp else 'unknown'
+            date_counts[date] += 1
+
+        daily_trend = [
+            {"date": date, "queries": count}
+            for date, count in sorted(date_counts.items())
+        ]
+
+        # ----- Top questions (most frequently asked) -----
+        question_counts = Counter(
+            r.get('query', '') for r in records if r.get('query')
+        )
+        top_questions = [
+            {"question": question[:100], "count": count}
+            for question, count in question_counts.most_common(5)
+        ]
+
+        # ----- Confidence breakdown -----
+        confidence_counts = Counter(detect_confidence_from_record(r) for r in records)
+        confidence_breakdown = [
+            {"level": level, "count": confidence_counts.get(level, 0)}
+            for level in ["High", "Medium", "Low"]
+        ]
+
         return {
             "total": total,
             "positive": positive,
             "negative": negative,
             "deflection_rate": round(deflection_rate, 2),
-            "recent": recent
+            "recent": recent,
+            "tool_breakdown": tool_breakdown,
+            "daily_trend": daily_trend,
+            "top_questions": top_questions,
+            "tool_deflection": tool_deflection,
+            "confidence_breakdown": confidence_breakdown
         }
     except Exception as e:
         print(f"Error loading analytics data: {e}")
-        return {
-            "total": 0,
-            "positive": 0,
-            "negative": 0,
-            "deflection_rate": 0.0,
-            "recent": []
-        }
+        return dict(EMPTY_ANALYTICS)
 
 # ===== IN-MEMORY CACHE =====
+# Cache structure: {cache_key: {data, timestamp}}
 answer_cache = {}
+related_cache = {}
+CACHE_EXPIRY_HOURS = 24
+
+
+def get_cache_key(query, tool, model):
+    return f"{tool}:{model}:{query.lower().strip()}"
+
+
+def get_from_cache(key):
+    if key in answer_cache:
+        cached = answer_cache[key]
+        # Check if cache is still valid
+        if datetime.now() - cached['timestamp'] < timedelta(hours=CACHE_EXPIRY_HOURS):
+            print(f"Cache HIT for key: {key[:50]}...")
+            return cached['data']
+        else:
+            # Expired — remove it
+            del answer_cache[key]
+            print(f"Cache EXPIRED for key: {key[:50]}...")
+    return None
+
+
+def save_to_cache(key, data):
+    answer_cache[key] = {
+        'data': data,
+        'timestamp': datetime.now()
+    }
+    print(f"Cache SAVED for key: {key[:50]}...")
+
+
+def get_related_cache_key(query, tool):
+    return f"related:{tool}:{query.lower().strip()}"
+
+
+def get_from_related_cache(key):
+    if key in related_cache:
+        cached = related_cache[key]
+        # Check if cache is still valid
+        if datetime.now() - cached['timestamp'] < timedelta(hours=CACHE_EXPIRY_HOURS):
+            print(f"Related cache HIT for key: {key[:50]}...")
+            return cached['data']
+        else:
+            # Expired — remove it
+            del related_cache[key]
+            print(f"Related cache EXPIRED for key: {key[:50]}...")
+    return None
+
+
+def save_to_related_cache(key, data):
+    related_cache[key] = {
+        'data': data,
+        'timestamp': datetime.now()
+    }
+    print(f"Related cache SAVED for key: {key[:50]}...")
+
 
 # ===== API ENDPOINTS =====
 
@@ -394,26 +537,34 @@ async def ask(request: dict):
     tool_config = TOOLS.get(tool, TOOLS['amplitude'])
 
     try:
-        # Cache key includes model and tool so results are fully isolated
-        cache_key = f"{query}::{model}::{tool}"
-        if cache_key in answer_cache:
-            return answer_cache[cache_key]
+        # Check cache first
+        cache_key = get_cache_key(query, tool, model)
+        cached_result = get_from_cache(cache_key)
+        if cached_result:
+            print(f"✅ Cache HIT — returning cached answer")
+            result_with_flag = dict(cached_result)
+            result_with_flag['from_cache'] = True
+            return result_with_flag
+
+        print(f"❌ Cache MISS — calling Gemini API")
 
         result = get_answer(query, model=model, tool=tool)
         confidence = get_confidence(result["distance"])
 
-        response = AskResponse(
-            answer=result["answer"],
-            source=result["source"],
-            source_url=result["source_url"],
-            confidence=confidence,
-            distance=float(result["distance"]),
-            model_used=result["model_used"]
-        )
+        response_data = {
+            "answer": result["answer"],
+            "source": result["source"],
+            "source_url": result["source_url"],
+            "confidence": confidence,
+            "distance": float(result["distance"]),
+            "model_used": result["model_used"],
+            "from_cache": False
+        }
 
-        # Cache the result before returning
-        answer_cache[cache_key] = response
-        return response
+        # Save to cache before returning
+        save_to_cache(cache_key, response_data)
+        print(f"💾 Saved to cache. Total cached: {len(answer_cache)}")
+        return response_data
     except Exception as e:
         return AskResponse(
             answer=f"Error: {str(e)}",
@@ -454,18 +605,17 @@ async def get_analytics():
     - negative: Count of negative feedback
     - deflection_rate: Percentage of positive feedback
     - recent: Last 10 queries with timestamp and feedback
+    - tool_breakdown: Query count per tool
+    - daily_trend: Query count per day
+    - top_questions: Most frequently asked questions
+    - tool_deflection: Deflection rate per tool
+    - confidence_breakdown: Count of High/Medium/Low confidence answers
     """
     try:
         data = load_analytics_data()
         return AnalyticsResponse(**data)
     except Exception as e:
-        return AnalyticsResponse(
-            total=0,
-            positive=0,
-            negative=0,
-            deflection_rate=0.0,
-            recent=[]
-        )
+        return AnalyticsResponse(**EMPTY_ANALYTICS)
 
 
 @app.post("/related")
@@ -474,6 +624,7 @@ async def get_related(request: dict):
     answer = request.get("answer", "")
     confidence = request.get("confidence", "Low")
     model = request.get("model", "gemini-2.5-flash")
+    tool = request.get("tool", "amplitude")
 
     default_questions = [
         "How do I build a funnel in Amplitude?",
@@ -484,6 +635,12 @@ async def get_related(request: dict):
     # Skip Gemini call for Low confidence answers
     if confidence == "Low":
         return {"questions": default_questions}
+
+    # Check cache first
+    related_cache_key = get_related_cache_key(query, tool)
+    cached_questions = get_from_related_cache(related_cache_key)
+    if cached_questions:
+        return cached_questions
 
     try:
         prompt = f"""Based on this Amplitude analytics question: "{query}"
@@ -503,7 +660,9 @@ Return only the JSON array, no explanation, no markdown, no backticks."""
         questions = json.loads(text)
 
         if isinstance(questions, list) and len(questions) >= 3:
-            return {"questions": questions[:3]}
+            result = {"questions": questions[:3]}
+            save_to_related_cache(related_cache_key, result)
+            return result
         else:
             return {"questions": default_questions}
 
@@ -520,6 +679,23 @@ async def get_tools():
         {"key": "mixpanel", "name": "Mixpanel", "icon": "🔥"},
         {"key": "google_analytics", "name": "Google Analytics", "icon": "📈"}
     ]}
+
+
+@app.get("/cache/stats")
+async def cache_stats():
+    return {
+        "total_cached": len(answer_cache),
+        "keys": [k[:50] for k in answer_cache.keys()],
+        "total_related_cached": len(related_cache),
+        "related_keys": [k[:50] for k in related_cache.keys()]
+    }
+
+
+@app.delete("/cache/clear")
+async def clear_cache():
+    answer_cache.clear()
+    related_cache.clear()
+    return {"status": "cache cleared"}
 
 
 # ===== RUN SERVER =====
